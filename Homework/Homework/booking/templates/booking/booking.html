@@ -1,0 +1,114 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block content %}
+<center><h2>Book Cleaner </h2></center>
+<hr>
+<center>
+    
+<form method="post">
+    <table class="table table-hover" style="width:50%;" align="center">
+    {% csrf_token %}
+       
+        {% for field in form %}
+            <tr>
+                <td>
+                    {{ field.label}}
+                </td>
+                <td>
+                    {{ field }}
+                </td>
+                <td>
+                    {{ field.errors }}
+                </td>
+            </tr>
+        {% endfor%}
+    <tr>
+        <td colspan="3">
+            <center>
+                <button type="submit" class="btn btn-primary">Check Cleaner Availability</button>
+            </center>
+        </td>
+    </tr>
+</table>
+        </form>
+    <table class="table table-hover" style="width:50%;" align="center"> 
+        <tr><td>
+                <!-- The Modal -->
+              <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h4 class="modal-title">Select From Our Best Cleaning Experts</h4>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                    
+                    {% for i in cleaner %}
+                    <div class="card" style="width:400px">
+                        <div class="card-body">
+                        <form method="POST" action="{% url 'booking_save' %}" id="searchform">
+                            {% csrf_token %}
+                                <div style="display: none;">
+                                    {{ form.as_p }}
+                                </div>
+                                <input type="hidden" name="cleaner" value="{{ i.pk }}">
+                            <h4 class="card-title">{{ i.user.first_name|title }}</h4>
+                            <p class="card-text">Ratings:{{ i.quality_score }}
+                                
+                                {% for star in star_counter  %}
+                                <span class="fa fa-star" {% if star < i.quality_score %} style="color: orange;" {% endif %}>
+
+                                </span> 
+                                 
+                                    
+                                {% endfor %}
+                                    
+                            </p>
+                            <a href="{% url 'profile' pk=i.user.pk %}" class="btn btn-outline-primary stretched-link">See Profile</a>
+                            <button type="submit" class="btn btn-primary stretched-link">Book Cleaner</button>
+                        </form>
+                        </div>
+                    {% if forloop.counter|divisibleby:4 %}
+                        </div>
+                        <div class="card-deck">
+                    {% endif %}
+                {% endfor %}
+            </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">select</button>
+                    </div>
+
+                  </div>
+                </div>
+              </div></center>
+        </td>        
+    </tr>
+</table>
+{{ cleaner }}
+</center>
+{% if cleaner|length > 0 %}
+    <script>
+        $(document).ready(function(){
+            $("#myModal").modal('show');
+        });
+    </script>
+    <!-- cleaner|length <= 0 and  cleaner != None%} -->
+{% elif cleaner|length <= 0 and  cleaner != None %}
+    <div class="alert alert-danger">
+        <a href="#" class="alert-link">Sorry!Cleaner not Available</a>.
+    </div>
+{% endif%}
+</div>
+{% endblock content %}
+
+{% block script%}
+
+<script src="{% static 'validation.js' %}"></script>
+
+{% endblock script %}

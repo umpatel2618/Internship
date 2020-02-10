@@ -1,0 +1,1 @@
+web: gunicorn Technowledge_World.wsgi

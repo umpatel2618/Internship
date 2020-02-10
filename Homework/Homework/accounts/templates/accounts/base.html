@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="{% static 'jquery.js' %}">
+</script>
+<script type="text/javascript" src="{% static 'jquery-ui.min.js' %}">
+</script>
+<script type="text/javascript" src="{% static 'bootstrap.min.js' %}">
+</script>
+<script type="text/javascript" src="{% static 'Customjs.js' %}">
+</script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>
+Homework.com
+</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"  href="{% static 'bootstrap.css' %}" type="text/css" media="screen"/>
+<link rel="stylesheet"  href="{% static 'style.css' %}" type="text/css" media="screen"/>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<style>
+   .checked {
+           color: orange; 
+            }
+   </style>
+<!--[if lte IE 8]>
+<link rel="stylesheet"  href="menuie.css" type="text/css" media="screen"/>
+<link rel="stylesheet"  href="vmenuie.css" type="text/css" media="screen"/>
+<![endif]-->
+<script type="text/javascript" src="{% static 'totop.js' %}">
+</script>
+</head>
+<body class="Home">
+<div class="container-fluid">
+   <nav id="ttr_menu" class="navbar-default navbar">
+      <div id="ttr_menu_inner_in">
+      <div class="menuforeground">
+      </div>
+      <div id="navigationmenu">
+      <div class="navbar-header">
+      <button id="nav-expander" data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+      <span class="sr-only">
+      </span>
+      <span class="icon-bar">
+      </span>
+      <span class="icon-bar">
+      </span>
+      <span class="icon-bar">
+      </span>
+      </button>
+      <a href="{% url 'home' %}" target="_self">
+      <img  class="ttr_menu_logo" src="{% static 'menulogo.png' %}" >
+      </a>
+      </div>
+      <div class="menu-center collapse navbar-collapse">
+         {% if user.is_authenticated and not user.is_cleaner %}
+                     
+         <ul class="ttr_menu_items nav navbar-nav navbar-right">
+            <li class="ttr_menu_items_parent dropdown"><a href="{% url 'home' %}"
+                  class="ttr_menu_items_parent_link_active"><span class="menuchildicon"></span>Home</a>
+               <hr class="horiz_separator" />
+            </li>
+            <li class="ttr_menu_items_parent dropdown"><a href="{% url 'booking'%}"
+                  class="ttr_menu_items_parent_link"><span class="menuchildicon"></span>Booking</a>
+               <hr class="horiz_separator" />
+            </li>
+            <li class="ttr_menu_items_parent dropdown"><a href="{% url 'booking_list' pk=user.pk%}"
+                  class="ttr_menu_items_parent_link"><span class="menuchildicon"></span>Your Booking</a>
+               <hr class="horiz_separator" />
+            </li>
+            <li class="ttr_menu_items_parent dropdown"><a href="{% url 'logout'%}"
+                  class="ttr_menu_items_parent_link"><span class="menuchildicon"></span>Logout</a>
+               <hr class="horiz_separator" />
+            </li>
+            <li class="ttr_menu_items_parent dropdown"><a href="{% url 'cleaner' %}"
+                  class="ttr_menu_items_parent_link"><span class="menuchildicon"></span>Become Cleaner</a>
+               <hr class="horiz_separator" />
+            </li>
+         </ul>
+         {% elif user.is_cleaner %}
+         <ul class="ttr_menu_items nav navbar-nav navbar-right">
+            <li class="ttr_menu_items_parent dropdown"><a href="{% url 'home' %}"
+                  class="ttr_menu_items_parent_link_active"><span class="menuchildicon"></span>Home</a>
+               <hr class="horiz_separator" />
+            </li>
+            <li class="ttr_menu_items_parent dropdown"><a href="{% url 'booking'%}"
+                  class="ttr_menu_items_parent_link"><span class="menuchildicon"></span>Booking</a>
+               <hr class="horiz_separator" />
+            </li>
+            <li class="ttr_menu_items_parent dropdown"><a href="{% url 'booking_list' pk=user.pk%}"
+                  class="ttr_menu_items_parent_link"><span class="menuchildicon"></span>Your Booking</a>
+               <hr class="horiz_separator" />
+            </li>
+            <li class="ttr_menu_items_parent dropdown"><a href="{% url 'logout'%}"
+                  class="ttr_menu_items_parent_link"><span class="menuchildicon"></span>Logout</a>
+               <hr class="horiz_separator" />
+            </li>
+         </ul>
+         {% else %}
+         <div class="menu-center collapse navbar-collapse">
+            <ul class="ttr_menu_items nav navbar-nav navbar-right">
+               <li class="ttr_menu_items_parent dropdown"><a href="{% url 'home'%}"
+                     class="ttr_menu_items_parent_link_active"><span class="menuchildicon"></span>Home</a>
+                  <hr class="horiz_separator" />
+               </li>
+               <li class="ttr_menu_items_parent dropdown"><a href="{% url 'login'%}"
+                     class="ttr_menu_items_parent_link"><span class="menuchildicon"></span>Log in</a>
+                  <hr class="horiz_separator" />
+               </li>
+               <li class="ttr_menu_items_parent dropdown"><a href="{% url 'register'%}"
+                       class="ttr_menu_items_parent_link"><span class="menuchildicon"></span>Sign Up</a>
+                  <hr class="horiz_separator" />
+               </li>
+               <!-- <li class="ttr_menu_items_parent dropdown"><a href="{% url 'booking'%}" class="ttr_menu_items_parent_link"><span class="menuchildicon"></span>Booking</a>
+               <hr class ="horiz_separator"/>
+               </li> -->
+            </ul>
+            {% endif %}
+      
+      </div>
+      </div>
+      </div>
+      </nav>   
+ </div>
+<div id="ttr_page" class="container">
+
+{% block content %}
+
+      {% endblock content %}
+
+      {% block script %}
+
+      {% endblock script %}
+
+</body>
+
+</html>

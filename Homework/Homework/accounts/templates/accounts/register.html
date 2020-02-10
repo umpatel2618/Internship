@@ -1,0 +1,44 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block content %}
+<center><h1> Sign Up To HomeWork</h1></center>
+<center><p id="error" class="h4"></p></center>
+<form action="#" method="POST" id="signup">
+    {% csrf_token %}
+    {% for field in form  %}
+    
+        {{ field.label}}<br>
+        {{ field }}<br>
+        {{ field.errors }}<br>
+        
+    {% endfor %}
+       
+    <button class="btn btn-primary" type="submit">Sign Up</button>&nbsp;&nbsp;<span class="h3">Already Have An account?</span><a href="{% url 'login' %}" class="btn btn-default">Log In</a>
+
+</form>
+
+{% endblock content %}
+
+{% block script %}
+    
+<script src="{% static 'validation.js' %}"></script>
+<script>
+    $("#id_phone").change(function () {
+      var phone = $(this).val();
+
+      $.ajax({
+        url: '/ajax/validate_phone/',
+        data: {
+          'phone': phone
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_taken) {
+            alert("A user with this Phone Number already exists.");
+          }
+        }
+      });
+    });
+  </script>
+{% endblock script %}
+    
