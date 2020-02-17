@@ -7,9 +7,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.messages.views import messages
 from .models import User,Cleaner
 from django.http import JsonResponse
+
 # Create your views here.
-
-
 
 class RegisterView(View):
     def get(self,request):

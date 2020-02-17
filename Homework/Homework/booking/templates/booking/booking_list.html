@@ -13,6 +13,8 @@
         <strong></strong><h2>Detail of Your Hired Cleaner List...</h2></strong>
     <!-- </div> -->
 <hr>
+{% if object_list %}
+        
 <table class="table table-hover" style="width:100%;">
     <thead>
         <tr>
@@ -27,7 +29,6 @@
     </thead>
     <body>
         
-        {% if object_list %}
             
         {% for i in object_list %}
             <tr>
@@ -69,11 +70,14 @@
                 <td>{{ i.cleaner.city }}</td>
                 <td style="font-weight:bold;"><script>document.write(timeslot[{{ i.slot }}])</script></td>
                 <td style="font-weight:bold;">{{ i.date }}</td>
+                <td>{{i.pk}}</td>
+                <tr><td></td><td><form method="post" action="{% url 'booking_delete' i.pk %}">{% csrf_token %}<button class="btn btn-danger" action="submit">Cancel Booking</button></form></td></tr>
             </tr>  
         {% endfor %}
 
         {% else %}
             <tr><h2>You Have No Recent Bookings</h2></tr>
+            <tr><h3>No Data Found</h3></tr>
         {% endif %}   
     </body>                  
 </table>

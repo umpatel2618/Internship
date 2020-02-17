@@ -14,11 +14,11 @@ class User(AbstractUser):
     REQUIRED_FIELDS =   ['username']
 
     def __str__(self):
-        return self.first_name
+        return str(self.first_name) + " " + str(self.email) + " " + str(self.phone) 
 
 class City(models.Model):
     city = models.CharField(max_length=20,unique=True)
-
+ 
     def __str__(self):
         return self.city
 

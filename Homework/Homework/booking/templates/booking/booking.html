@@ -1,6 +1,7 @@
 {% extends 'accounts/base.html' %}
 {% load static %}
 {% block content %}
+
 <center><h2>Book Cleaner </h2></center>
 <hr>
 <center>
@@ -54,6 +55,7 @@
                             {% csrf_token %}
                                 <div style="display: none;">
                                     {{ form.as_p }}
+                                    
                                 </div>
                                 <input type="hidden" name="cleaner" value="{{ i.pk }}">
                             <h4 class="card-title">{{ i.user.first_name|title }}</h4>
@@ -63,8 +65,6 @@
                                 <span class="fa fa-star" {% if star < i.quality_score %} style="color: orange;" {% endif %}>
 
                                 </span> 
-                                 
-                                    
                                 {% endfor %}
                                     
                             </p>
@@ -79,10 +79,7 @@
                 {% endfor %}
             </div>
                     </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">select</button>
-                    </div>
+                    
 
                   </div>
                 </div>
@@ -90,7 +87,7 @@
         </td>        
     </tr>
 </table>
-{{ cleaner }}
+
 </center>
 {% if cleaner|length > 0 %}
     <script>

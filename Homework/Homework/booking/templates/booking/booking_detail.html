@@ -1,0 +1,37 @@
+{% extends 'accounts/base.html' %}
+{% block content %}
+<div class="col-md-12">
+    <center>
+    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<hr>
+<h1>Bookings</h1>
+<hr>
+<center>
+        {% if object %}
+
+        <table class="table table-hover" style="width:50%;" align="center"><center>
+            <tr><h2></h1>Congratulations!You Booked Cleaner</h2></tr>
+        <tr><td>User: {{object.user.first_name}}</td></tr>
+        <tr><td>Cleaner: {{object.cleaner.user.first_name}}</td></tr>
+        <tr><td>City:{{object.city}}</td></tr>
+        <tr><td>TimeSlot:{{object.slot}}</td></tr>
+
+            <tr><td></td><td><form method="post" action="{% url 'bookinglist' object.pk %}">{% csrf_token %}<button class="btn btn-danger" action="submit">Cancel Booking</button></form></td></tr>
+
+        <tr></center></table><hr>
+        {% else %}
+        <tr><h2>Data not Exists</h2></tr>
+        {% endif %}
+
+</table></center>
+</div>
+{% endblock content%}

@@ -19,4 +19,4 @@ class Booking(models.Model):
 
     def get_absolute_url(self):
         return reverse("booking_list", kwargs={"pk": self.pk})
-    
+     
