@@ -11,6 +11,8 @@ from django.views.generic import DeleteView
 from Homework.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
+import datetime
+
 # Create your views here.
 
 
@@ -58,14 +60,18 @@ class BookingSave(View):
 class BookingList(ListView):
     template_name = 'booking/booking_list.html'
     
+
+    
     def get_queryset(self):
         return Booking.objects.filter(user=self.request.user).order_by('-date')
+        
         
 
 class DeleteBooking(DeleteView):
     model=Booking
     # template_name = 'booking/bookingmodel_confirm_delete.html'
     success_url = reverse_lazy('mybooking_list')
+    
 
 class BookingDetail(DetailView):
     model=Booking
@@ -74,7 +80,7 @@ class BookingDetail(DetailView):
     extra_context = {'form':BookingDetailForm()}
 
 class Dutydetail(ListView):
-    template_name = 'booking/booking_list.html'
+    template_name = 'booking/duty.html'
 
     def get_queryset(self):
-        return Booking.objects.filter(cleaner__user=self.request.user).order_by('-date')
+        return Booking.objects.filter(cleaner__user=self.request.user).order_by('date')

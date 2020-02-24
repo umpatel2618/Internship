@@ -1,0 +1,62 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block content %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+        {{ message }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="content-section">
+    
+    <!-- FORM HERE -->
+    <form action="#" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <center>
+      <fieldset class="form-group">
+          <h1>Profile Information</h1>
+          <!-- {{ u_form }} -->
+        <table class="table table-hover" style="width: 70%;">
+        <tr>
+            <td style="width: 50%;font-weight: bold;font-size: 17px;" class="text text-info">First Name:</td>
+            <td>{{ u_form.first_name }}</td>
+        </tr>
+        <tr>
+            <td style="width: 50%;font-weight: bold;font-size: 17px;" class="text text-info">Last Name:</td>
+            <td>{{ u_form.last_name }}</td>
+        </tr>
+        <tr>
+            <td style="width: 50%;font-weight: bold;font-size: 17px;" class="text text-info">E Mail:</td>
+            <td>{{ u_form.email }}</td>
+        </tr>
+        <tr>
+            <td style="width: 50%;font-weight: bold;font-size: 17px;" class="text text-info">Contact Number:</td>
+            <td>{{ u_form.phone }}</td>
+        </tr>
+        
+        
+        
+        </table> 
+        </fieldset>
+
+
+      
+
+      <div class="form-group">
+          <button class="btn btn-primary" type="submit" >Update Profile</button>
+
+      </div>
+    </center>
+  </form>
+  </div>
+{% endblock content %}
+
+{% block script %}
+
+<script src="{% static 'validation.js' %}"></script>
+
+{% endblock script %}    

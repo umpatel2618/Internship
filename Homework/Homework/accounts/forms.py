@@ -20,3 +20,10 @@ class cleanerRegisterForm(forms.ModelForm):
     class Meta:
         model = Cleaner
         fields = ['city'] 
+
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['first_name','last_name','email','phone']

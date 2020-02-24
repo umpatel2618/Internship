@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views.generic import View
 from django.views.generic.detail import DetailView
-from .forms import RegisterForm,LoginForm,cleanerRegisterForm
+from .forms import RegisterForm,LoginForm,cleanerRegisterForm,UserUpdateForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.messages.views import messages
@@ -78,3 +78,20 @@ class LogoutView(View):
 
 def home(request):
     return render(request,'accounts/home.html')
+
+
+
+def profile(request):
+    if request.method =='POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        if u_form.is_valid():
+            u_form.save()
+            messages.success(request,f'Your Account has been Updated!')
+            return redirect('profile1')
+            
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+    context = {
+        'u_form': u_form}
+    return render(request,'accounts/profile1.html',context)     
+ 

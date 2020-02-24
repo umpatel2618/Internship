@@ -8,9 +8,9 @@ from django.core.mail import send_mass_mail
 @receiver(post_save,sender=Booking)
 def email_send(sender,instance,created,**kwargs):
     if created:
-        cleaner_msg = "Welcome To Homewrok The Home Cleaning Services.\n You have been Booked for a Date:" + str(instance.date) + " for cleaning service at " + instance.city.city + "\nCustomer name : " + instance.user.first_name + "\nTime : " + SLOT_CHOICE[int(instance.slot)][1] + "\nSee Your Orders List :127.0.0.1:8000/booking_list/'"
+        cleaner_msg = "Welcome To Homewrok The Home Cleaning Services.\n You have been Booked for a Date:" + str(instance.date) + " for cleaning service at " + instance.city.city + "\nCustomer name : " + instance.user.first_name + "\nTime : " + SLOT_CHOICE[int(instance.slot)][1] + "\nSee Your Orders List :127.0.0.1:8000/booking_list/ \n Thank You..."
         print(cleaner_msg)
-        customer_msg = "Welcome To Homewrok The Home Cleaning Services.\n Congratulations!You have successfully booked a cleaner for date :" + str(instance.date) + " cleaning service at " + instance.city.city + "\nCleaner name : " + instance.cleaner.user.first_name + "\nTime : " + SLOT_CHOICE[int(instance.slot)][1] + "\nSee Your Orders List :127.0.0.1:8000/booking_list/'"
+        customer_msg = "Welcome To Homewrok The Home Cleaning Services.\n Congratulations!You have successfully Booked our Expert Cleaner for date :" + str(instance.date) + " cleaning service at " + instance.city.city + "\nCleaner name : " + instance.cleaner.user.first_name + "\nTime : " + SLOT_CHOICE[int(instance.slot)][1] + "\nSee Your Orders List :127.0.0.1:8000/booking_list/ \n Thank You..."
         print(customer_msg)
         print(SLOT_CHOICE[int(instance.slot)][1])
         

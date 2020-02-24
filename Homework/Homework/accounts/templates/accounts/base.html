@@ -64,27 +64,33 @@ Homework.com
             
          <ul class="ttr_menu_items nav navbar-nav navbar-right">
             <li class="ttr_menu_items_parent"><a href="{% url 'home' %}"
-                  class="{% if request.resolver_match.url_name == "home" %}ttr_menu_items_parent_link_active{% endif %}"><span class="menuchildicon"></span>Home</a>
+                  class="{% if request.resolver_match.url_name == "home" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon" aria-hidden="true"></span>Home</a>
                <hr class="horiz_separator" />
             </li>
-            <li class="ttr_menu_items_parent dropdown"><a href="{% url 'profile' user.pk %}"
-               class="{% if request.resolver_match.url_name == "profile" %}ttr_menu_items_parent_link_active{% endif %}"><span class="menuchildicon"></span>Profile</a>
+            <!-- <li class="ttr_menu_items_parent dropdown"><a href="{% url 'profile' user.pk %}"
+               class="{% if request.resolver_match.url_name == "profile" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon"></span>Profile</a>
             <hr class="horiz_separator" />
-         </li>
-            <li class="ttr_menu_items_parent dropdown"><a href="{% url 'booking'%}"
-                  class="{% if request.resolver_match.url_name == "booking" %}ttr_menu_items_parent_link_active{% endif %}"><span class="menuchildicon"></span>Booking</a>
+         </li> -->
+         
+          <li class="ttr_menu_items_parent dropdown"><a href="{% url 'booking'%}"
+                  class="{% if request.resolver_match.url_name == "booking" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon"></span>Booking</a>
                <hr class="horiz_separator" />
-            </li>
+         </li>
+         
             <li class="ttr_menu_items_parent dropdown"><a href="{% url 'mybooking_list'%}"
-                  class="{% if request.resolver_match.url_name == "mybooking_list" %}ttr_menu_items_parent_link_active{% endif %}"><span class="menuchildicon"></span>Your Booking</a>
+                  class="{% if request.resolver_match.url_name == "mybooking_list" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon"></span>Your Booking</a>
                <hr class="horiz_separator" />
             </li>
             <li class="ttr_menu_items_parent dropdown"><a href="{% url 'cleaner' %}"
-               class="{% if request.resolver_match.url_name == "cleaner" %}ttr_menu_items_parent_link_active{% endif %}"><span class="menuchildicon"></span>Become Cleaner</a>
+               class="{% if request.resolver_match.url_name == "cleaner" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon"></span>Become Cleaner</a>
             <hr class="horiz_separator" />
             </li>
+            <li class="ttr_menu_items_parent dropdown"><a href="{% url 'profile1'%}"
+               class="{% if request.resolver_match.url_name == "profile1" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon"></span>Profile</a>
+               <hr class="horiz_separator" />
+      </li>
             <li class="ttr_menu_items_parent dropdown"><a href="{% url 'logout'%}"
-                  class="{% if request.resolver_match.url_name == "logout" %}ttr_menu_items_parent_link_active{% endif %}"><span class="menuchildicon"></span>Logout</a>
+               class="{% if request.resolver_match.url_name == "logout" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon"></span>Logout</a>
                <hr class="horiz_separator" />
             </li>
             
@@ -93,27 +99,31 @@ Homework.com
          {% elif user.is_cleaner %}
          <ul class="ttr_menu_items nav navbar-nav navbar-right">
             <li class="ttr_menu_items_parent dropdown"><a href="{% url 'home' %}"
-                  class="{% if request.resolver_match.url_name == "home" %}ttr_menu_items_parent_link_active{% endif %}"><span class="menuchildicon"></span>Home</a>
+               class="{% if request.resolver_match.url_name == "home" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon"></span>Home</a>
                <hr class="horiz_separator" />
             </li>
-            <li class="ttr_menu_items_parent dropdown"><a href="{% url 'profile' user.pk %}"
-               class="{% if request.resolver_match.url_name == "profile" %}ttr_menu_items_parent_link_active{% endif %}"><span class="menuchildicon"></span>Profile</a>
+            <!-- <li class="ttr_menu_items_parent dropdown"><a href="{% url 'profile' user.pk %}"
+               class="{% if request.resolver_match.url_name == "profile" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon"></span>Profile</a>
             <hr class="horiz_separator" />
-         </li>
+         </li> -->
             <li class="ttr_menu_items_parent dropdown"><a href="{% url 'dutydetail' user.pk %}"
-               class="{% if request.resolver_match.url_name == "dutydetail" %}ttr_menu_items_parent_link_active{% endif %}"><span class="menuchildicon"></span>My Duty</a>
+               class="{% if request.resolver_match.url_name == "dutydetail" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon"></span>My Duty</a>
             <hr class="horiz_separator" />
          </li>
+         <li class="ttr_menu_items_parent dropdown"><a href="{% url 'profile1'%}"
+            class="{% if request.resolver_match.url_name == "profile1" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon"></span>Profile</a>
+         <hr class="horiz_separator" />
+   </li>
             <li class="ttr_menu_items_parent dropdown"><a href="{% url 'booking'%}"
-                  class="{% if request.resolver_match.url_name == "booking" %}ttr_menu_items_parent_link_active{% endif %}"><span class="menuchildicon"></span>Booking</a>
+                  class="{% if request.resolver_match.url_name == "booking" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon"></span>Booking</a>
                <hr class="horiz_separator" />
             </li>
             <li class="ttr_menu_items_parent dropdown"><a href="{% url 'mybooking_list' %}"
-                  class="{% if request.resolver_match.url_name == "booking_list" %}ttr_menu_items_parent_link_active{% endif %}"><span class="menuchildicon"></span>Your Booking</a>
+                  class="{% if request.resolver_match.url_name == "booking_list" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon"></span>Your Booking</a>
                <hr class="horiz_separator" />
             </li>
             <li class="ttr_menu_items_parent dropdown"><a href="{% url 'logout'%}"
-                  class="{% if request.resolver_match.url_name == "logout" %}ttr_menu_items_parent_link_active{% endif %}"><span class="menuchildicon"></span>Logout</a>
+                  class="{% if request.resolver_match.url_name == "logout" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon"></span>Logout</a>
                <hr class="horiz_separator" />
             </li>
          </ul>
@@ -121,17 +131,18 @@ Homework.com
          <div class="menu-center collapse navbar-collapse">
             <ul class="ttr_menu_items nav navbar-nav navbar-right">
                <li class="ttr_menu_items_parent dropdown"><a href="{% url 'home'%}"
-                     class="{% if request.resolver_match.url_name == "home" %}ttr_menu_items_parent_link_active{% endif %}"><span class="menuchildicon"></span>Home</a>
+                     class="{% if request.resolver_match.url_name == "home" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon" aria-hidden="true"></span>Home</a>
                   <hr class="horiz_separator" />
                </li>
                <li class="ttr_menu_items_parent dropdown"><a href="{% url 'login'%}"
-                     class="{% if request.resolver_match.url_name == "login" %}ttr_menu_items_parent_link_active{% endif %}"><span class="menuchildicon"></span>Log in</a>
+                     class="{% if request.resolver_match.url_name == "login" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon"></span>Log in</a>
                   <hr class="horiz_separator" />
                </li>
                <li class="ttr_menu_items_parent dropdown"><a href="{% url 'register'%}"
-                       class="{% if request.resolver_match.url_name == "register" %}ttr_menu_items_parent_link_active{% endif %}"><span class="menuchildicon"></span>Sign Up</a>
+                       class="{% if request.resolver_match.url_name == "register" %}ttr_menu_items_parent_link_active{% else %}ttr_menu_items_parent_link{% endif %}"><span class="menuchildicon"></span>Sign Up</a>
                   <hr class="horiz_separator" />
                </li>
+              
             </ul>
             {% endif %}
       
@@ -155,3 +166,4 @@ Homework.com
 </body>
 
 </html>
+

@@ -32,7 +32,19 @@
         <tr>
             <td>Contact</td>
             <td style="font-weight:bold;">{{ object.phone}}</td>
-        </tr>              
+        </tr>
+        <tr>
+            {% if user.is_cleaner %}
+                <h3 style="font-weight:bold;" class="text-info bg-primary">You Are Also From Our Cleaner Family</h3>
+            {% endif %}
+        </tr>
+                      
 </table>
+
+
+{% for field in u_form  %}
+    {{ field }}
+{% endfor %}
+    
 
 {% endblock  %}

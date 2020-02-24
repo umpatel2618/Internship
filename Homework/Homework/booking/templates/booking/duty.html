@@ -1,0 +1,83 @@
+{% extends 'accounts/base.html' %}
+{% block content %}
+<script>
+    var timeslot={
+        1:"10-11 A.M",2:"11-12 P.M",3:"12-01 P.M",4:"01-02 P.M",5:"02-03 P.M",6:"03-04 P.M",7:"04-05 P.M",8:"05-06 P.M",9:"06-07 P.M"
+    }
+</script>
+
+<div class="col-md-12">
+<center>
+<hr>
+    <!-- <div class="alert alert-info"> -->
+        <strong></strong><h2>Your Upcomig Duties..</h2></strong>
+    <!-- </div> -->
+<hr>
+{% if object_list %}
+        
+<table class="table table-hover" style="width:100%;">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Cleaner First Name</th>
+            <th>Cleaner Last Name</th>
+            <th>Cleaners Rating</th>
+            <th>Cleaner City</th>
+            <th>Time Slot</th>
+            <th>Date</th>
+        </tr>      
+    </thead>
+    <body>
+        
+            
+        {% for i in object_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ i.cleaner.user.first_name }}</td>
+                <td>{{ i.cleaner.user.last_name }}</td>
+                <td>{% if i.cleaner.quality_score == 1.0 %}
+                    {{ i.quality_score }}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                   {% elif i.cleaner.quality_score == 2.0 %}
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                   {% elif i.cleaner.quality_score == 3.0 %}
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                   {% elif i.cleaner.quality_score == 4.0 %}
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star"></span>
+                   {% else %}
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star checked"></span>
+                   <span class="fa fa-star checked"></span>
+                   {% endif %}</td>
+                <td>{{ i.cleaner.city }}</td>
+                <td style="font-weight:bold;"><script>document.write(timeslot[{{ i.slot }}])</script></td>
+                <td style="font-weight:bold;">{{ i.date }}</td>
+            </tr>  
+        {% endfor %}
+
+        {% else %}
+            <tr><h2>You Have No Recent Bookings</h2></tr>
+            <tr><h3>No Data Found</h3></tr>
+        {% endif %}   
+    </body>                  
+</table>
+</center>
+{% endblock content %}

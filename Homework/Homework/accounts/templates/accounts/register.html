@@ -6,22 +6,26 @@
 <form action="#" method="POST" id="signup">
     {% csrf_token %}
     {% for field in form  %}
-    
-        {{ field.label}}<br>
-        {{ field }}<br>
-        {{ field.errors }}<br>
-        
+    <center>
+      <table class="table table-hover" style="width: 80%;">     
+        <tr>
+        <td style="width: 50%;font-weight: bold;font-size: 17px;" class="text text-info">{{ field.label}}</td>
+        <td>{{ field }}</td>
+        <td>{{ field.errors }}</td>
+      </tr>
+  </table>
+
     {% endfor %}
        
     <button class="btn btn-primary" type="submit">Sign Up</button>&nbsp;&nbsp;<span class="h3">Already Have An account?</span><a href="{% url 'login' %}" class="btn btn-default">Log In</a>
 
 </form>
-
+</center>
 {% endblock content %}
 
 {% block script %}
 <script src="{% static 'validation.js' %}"></script>
-<script>
+<!-- <script>
     $("#id_phone").change(function () {
       var phone = $(this).val();
 
@@ -38,6 +42,6 @@
         }
       });
     });
-  </script>
+  </script> -->
 {% endblock script %}
     

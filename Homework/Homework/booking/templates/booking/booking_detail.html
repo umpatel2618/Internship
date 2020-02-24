@@ -1,5 +1,18 @@
 {% extends 'accounts/base.html' %}
 {% block content %}
+<style>
+    td{
+        width: 50%;
+        font-weight: bold;
+        font-size: 17px;
+    }
+</style>
+<script>
+    var timeslot={
+        1:"10-11 A.M",2:"11-12 P.M",3:"12-01 P.M",4:"01-02 P.M",5:"02-03 P.M",6:"03-04 P.M",7:"04-05 P.M",8:"05-06 P.M",9:"06-07 P.M"
+    }
+</script>
+
 <div class="col-md-12">
     <center>
     {% if messages %}
@@ -15,23 +28,34 @@
 <hr>
 <h1>Bookings</h1>
 <hr>
+<h2>Congratulations ! You Booked Our Expert Cleaner</h2>
 <center>
         {% if object %}
 
-        <table class="table table-hover" style="width:50%;" align="center"><center>
-            <tr><h2></h1>Congratulations!You Booked Cleaner</h2></tr>
-        <tr><td>User: {{object.user.first_name}}</td></tr>
-        <tr><td>Cleaner: {{object.cleaner.user.first_name}}</td></tr>
-        <tr><td>City:{{object.city}}</td></tr>
-        <tr><td>TimeSlot:{{object.slot}}</td></tr>
+        <table class="table table-hover" style="width:70%;" align="center"><center>
+        <tr>
+            <td class="text text-info">User:</td> 
+            <td class="text text-info">{{object.user.first_name}}</td>
+        </tr>
+        <tr>
+        <td class="text text-info">Cleaner:</td>
+        <td class="text text-info">{{object.cleaner.user.first_name}}</td>
+        </tr>
+        <tr>
+            <td class="text text-info">City:</td>    
+        <td class="text text-info">{{object.city}}</td>
+        </tr>
+        <tr>
+        <td class="text text-info">TimeSlot:</td>
+        <td class="text text-info"><script>document.write(timeslot[{{object.slot}}])</script></td>
+        </tr>    
+    </table><hr>
 
-            <tr><td></td><td><form method="post" action="{% url 'bookinglist' object.pk %}">{% csrf_token %}<button class="btn btn-danger" action="submit">Cancel Booking</button></form></td></tr>
+            <!-- <form method="post" action="{% url 'bookinglist' object.pk %}">{% csrf_token %}<button class="btn btn-danger" action="submit">Cancel Booking</button></form> -->
 
-        <tr></center></table><hr>
+        </center>
         {% else %}
         <tr><h2>Data not Exists</h2></tr>
         {% endif %}
-
-</table></center>
 </div>
 {% endblock content%}

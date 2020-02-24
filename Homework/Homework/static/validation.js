@@ -1,5 +1,31 @@
 $(document).ready(function(){
    
+    function phone_validation(){
+        // var contact = $(this).val();
+        $('#valid').remove()
+        var phone=$('#id_phone').val()
+        $('#phone').remove()
+        $.ajax({
+        url: '/ajax/validate_phone/',
+        data: {
+        'phone': phone
+        },
+        dataType: 'json',
+        success: function (data) {
+        if (data.is_taken) {
+            
+        $('#id_phone').after("<span id='phone' class='text-danger'><img class='img-thumbnail' style='width: 40px' src='../static/error.png'/>User With This Phone Number Already Exists.</span></p> ")
+        return false
+        }else{
+            $('#id_phone').after("<span id='phone' class='text-primary'><img class='img-thumbnail' style='width: 40px' src='../static/success.png'/>&nbsp;Availabel.</span></p> ")
+            return true
+            
+        }
+        }
+        });
+        
+        }
+
     function contact_validation(){
          len=$('#id_phone').val()
          var con= /^[0-9]*$/
@@ -68,8 +94,14 @@ $(document).ready(function(){
     }
     //registration form validation
    
+
+    // $('#id_phone').blur(function(){
+        
+    // });
+
     $('#id_phone').blur(function(){
         contact_validation()
+        phone_validation()
     }); 
 
     $('#id_first_name').blur(function(){
@@ -90,7 +122,7 @@ $(document).ready(function(){
 
     $('#singup').submit(function(e) {
         
-        if(!(contact_validation() && first_name_validation() && last_name_validation() && email_validation() && password_validation())) 
+        if(!(contact_validation() && !(phone_validation()) && first_name_validation() && last_name_validation() && email_validation() && password_validation())) 
         {
             e.preventDefault()
         } 
